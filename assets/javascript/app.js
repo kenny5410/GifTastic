@@ -18,6 +18,16 @@ $( document ).ready(function(){
         }       
     } 
 
+    //click function for adding a new button to the topics array
+    $('#add-car').on("click", function(event){
+        event.preventDefault();
+
+        var car = $('#car-input').val().trim();
+        topics.push(car);
+        console.log(topics);
+        renderButtons();
+    })
+
     //Giphy API Variable click function
     $('.topics').on("click", function() {
         var car = $(this).attr("data-name");
@@ -52,16 +62,7 @@ $( document ).ready(function(){
             });
     
     })
-
-    //click function for adding a new button to the topics array
-    $('#add-car').on("click", function(event){
-        event.preventDefault();
-
-        var car = $('#car-input').val().trim();
-        topics.push(car);
-        console.log(topics);
-    })    
         
-renderButtons();
+    renderButtons();
 })
 
