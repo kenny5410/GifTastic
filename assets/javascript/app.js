@@ -59,9 +59,6 @@ $( document ).ready(function(){
         console.log(topics);
         renderButtons();
     })
-    
-
-    
 
     //Function to either animate or keep image still
     function animate() {
@@ -77,7 +74,7 @@ $( document ).ready(function(){
 
     //Click event listener when the car call car-topics is clicked
     $(document).on("click", ".car-topics", displayCarInfo)
-    
+
     //Cick event listner to either animate or keep images still
     $(document).on("click", "#car-gif", animate)
 
