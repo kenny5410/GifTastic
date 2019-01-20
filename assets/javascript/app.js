@@ -3,7 +3,7 @@ $( document ).ready(function(){
     var topics = ["nsx", "wrx", "m3", "camaro" ,"corvette" ,"gtr" ,"miata" ,"veyron" ,"lancer+evo", "mustang"];
     console.log(topics);
 
-    //Function to to display car gif information
+    //Function to to display car stil gif information
     function displayCarInfo() {
         var car = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + car + "&api_key=tiA8TWDUyhiEmjQ99eKe8WgUlRWF0y9p&limit=10";
@@ -24,9 +24,11 @@ $( document ).ready(function(){
                     var carDiv = $('<div>');
                     var p = $('<p>').text("Rating: " + results[i].rating);
                     var carImage = $('<img>');
-
                     carImage.attr("src", results[i].images.fixed_height_still.url);
-
+                    carImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    carImage.attr("data-animate", results[i].images.fixed_height.url);
+                    carImage.attr("data-state", "still");
+                    carImage.attr("id", "car-gif")
                     carDiv.append(p);
                     carDiv.append(carImage);
 
@@ -59,10 +61,27 @@ $( document ).ready(function(){
     })
     
 
+    
+
+    //Function to either animate or keep image still
+    function animate() {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+    };
+
     //Click event listener when the car call car-topics is clicked
     $(document).on("click", ".car-topics", displayCarInfo)
+    
+    //Cick event listner to either animate or keep images still
+    $(document).on("click", "#car-gif", animate)
 
- 
+
     renderButtons();   
 })
 
