@@ -1,19 +1,22 @@
 $( document ).ready(function(){
     //This is the array of car brands
-    var topics = ["acura", "audi", "bmw", "dodge" ,"ford" ,"jeep" ,"lamborghini" ,"nissan" ,"tesla" ,"toyota" ,"volkswagen"];
+    var topics = ["nsx", "wrx", "m3", "camaro" ,"corvette" ,"gtr" ,"miata" ,"veyron" ,"lancer+evo", "mustang"];
     console.log(topics);
 
     //function for adding buttons
     
     
     //for loop to create a buttons for each item in the array
-    for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        a.addClass("topics");
-        a.attr("data-name", topics[i]);
-        a.text(topics[i]);
-        $('#topics-view').append(a);
-    }
+    function renderButtons() {
+    $('#topics-view').empty()    
+        for (var i = 0; i < topics.length; i++) {
+            var a = $("<button>");
+            a.addClass("topics");
+            a.attr("data-name", topics[i]);
+            a.text(topics[i]);
+            $('#topics-view').append(a);
+        }       
+    } 
 
     //Giphy API Variable click function
     $('.topics').on("click", function() {
@@ -29,13 +32,15 @@ $( document ).ready(function(){
                 console.log(response);
 
                 var results = response.data;
+                //clears the images div id every time a button is clicked
+                $('#add-car').empty();
 
                 for (var i = 0; i < results.length; i++) {
                     var carDiv = $('<div>');
                     var p = $('<p>').text("Rating: " + results[i].rating);
                     var carImage = $('<img>');
 
-                    carImage.attr("src", results[i].images.fixed_height.url);
+                    carImage.attr("src", results[i].images.fixed_height_still.url);
 
                     carDiv.append(p);
                     carDiv.append(carImage);
@@ -45,8 +50,18 @@ $( document ).ready(function(){
                 }
             
             });
+    
     })
-        
 
+    //click function for adding a new button to the topics array
+    $('#add-car').on("click", function(event){
+        event.preventDefault();
+
+        var car = $('#car-input').val().trim();
+        topics.push(car);
+        console.log(topics);
+    })    
+        
+renderButtons();
 })
 
