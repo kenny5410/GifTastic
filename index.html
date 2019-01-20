@@ -9,33 +9,37 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="jumbotron jumbotron-fluid text-center">
-                    <h1 class="display-4">Car Gifs!</h1>
-                    <p class="lead">Click on the buttons and add buttons to see car gifs!.</p>
-                </div>                
+       
+<div class="jumbotron jumbotron-fluid text-center">
+    <h1 class="display-4">Car Gifs!</h1>
+    <p class="lead">Click on the buttons and add buttons to see car gifs!.</p>
+</div>                
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="topics-view">
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div id="topics-view"></div>
-                <form>
-                    <div class="form-group">
-                        <label for="add-car-text">Add a car</label>
-                        <textarea class="form-control" id="car-input" rows="1"></textarea>
-                    </div>
-                    <button type="submit" id="add-car" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-            <div class="col">
-                <div id="images"></div>
-            </div>
+        <div class="col">
+            <form>
+                <div class="form-group">
+                    <label for="add-car-text">Add a car</label>
+                    <textarea class="form-control" id="car-input" rows="1"></textarea>
+                </div>
+                <button type="submit" id="add-car" class="btn btn-primary">Submit</button>
+            </form>            
         </div>
     </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="images"></div>
+        </div>
+    </div>
+</div>
     
     
     
