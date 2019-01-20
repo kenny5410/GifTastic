@@ -3,33 +3,8 @@ $( document ).ready(function(){
     var topics = ["nsx", "wrx", "m3", "camaro" ,"corvette" ,"gtr" ,"miata" ,"veyron" ,"lancer+evo", "mustang"];
     console.log(topics);
 
-    //function for adding buttons
-    
-    
-    //for loop to create a buttons for each item in the array
-    //function renderButtons() {
-    $('#topics-view').empty()    
-        for (var i = 0; i < topics.length; i++) {
-            var a = $("<button>");
-            a.addClass("topics");
-            a.attr("data-name", topics[i]);
-            a.text(topics[i]);
-            $('#topics-view').append(a);
-        }       
-    //} 
-
-    //click function for adding a new button to the topics array
-    $('#add-car').on("click", function(event){
-        event.preventDefault();
-
-        var car = $('#car-input').val().trim();
-        topics.push(car);
-        console.log(topics);
-        //renderButtons();
-    })
-
-    //Giphy API Variable click function
-    $('.topics').on("click", function() {
+    //Function to to display car gif information
+    function displayCarInfo() {
         var car = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + car + "&api_key=tiA8TWDUyhiEmjQ99eKe8WgUlRWF0y9p&limit=10";
 
@@ -57,12 +32,37 @@ $( document ).ready(function(){
 
                     $('#images').append(carDiv);
 
-                }
-            
-            });
+                }           
+            });     
+    }
     
+    //for loop to create a buttons for each item in the array
+    function renderButtons() {
+        $('#topics-view').empty()    
+            for (var i = 0; i < topics.length; i++) {
+                var a = $("<button>");
+                a.addClass("car-topics");
+                a.attr("data-name", topics[i]);
+                a.text(topics[i]);
+                $('#topics-view').append(a);
+            }       
+    } 
+
+    //click function for adding a new button to the topics array
+    $('#add-car').on("click", function(event){
+        event.preventDefault();
+
+        var car = $('#car-input').val().trim();
+        topics.push(car);
+        console.log(topics);
+        renderButtons();
     })
-        
-    //renderButtons();
+    
+
+    //Click event listener when the car call car-topics is clicked
+    $(document).on("click", ".car-topics", displayCarInfo)
+
+ 
+    renderButtons();   
 })
 
