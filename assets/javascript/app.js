@@ -7,7 +7,7 @@ $( document ).ready(function(){
     
     
     //for loop to create a buttons for each item in the array
-    function renderButtons() {
+    //function renderButtons() {
     $('#topics-view').empty()    
         for (var i = 0; i < topics.length; i++) {
             var a = $("<button>");
@@ -16,7 +16,7 @@ $( document ).ready(function(){
             a.text(topics[i]);
             $('#topics-view').append(a);
         }       
-    } 
+    //} 
 
     //click function for adding a new button to the topics array
     $('#add-car').on("click", function(event){
@@ -25,7 +25,7 @@ $( document ).ready(function(){
         var car = $('#car-input').val().trim();
         topics.push(car);
         console.log(topics);
-        renderButtons();
+        //renderButtons();
     })
 
     //Giphy API Variable click function
@@ -43,7 +43,7 @@ $( document ).ready(function(){
 
                 var results = response.data;
                 //clears the images div id every time a button is clicked
-                $('#add-car').empty();
+                $('#images').empty();
 
                 for (var i = 0; i < results.length; i++) {
                     var carDiv = $('<div>');
@@ -63,6 +63,6 @@ $( document ).ready(function(){
     
     })
         
-    renderButtons();
+    //renderButtons();
 })
 
